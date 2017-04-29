@@ -1,0 +1,7 @@
+{
+  "name": "webpack-setup",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Tyler Ferguson <tyler@nested.com>",
+  "license": "MIT"
+}
