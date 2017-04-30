@@ -24,6 +24,7 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
+    "express": "^4.15.2",
     "gh-pages": "^0.12.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
