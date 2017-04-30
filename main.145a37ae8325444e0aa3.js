@@ -1,0 +1,2 @@
+webpackJsonp([1],{"2twT":function(e,t,l){"use strict";function n(e){return e&&e.__esModule?e:{default:e}}var u=l("U7vG"),o=n(u);n(l("O27J")).default.render(o.default.createElement("h1",null,"Hello World!"),document.getElementById("root"))}},["2twT"]);
+//# sourceMappingURL=main.145a37ae8325444e0aa3.js.map
