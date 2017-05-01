@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
-import loadHome from 'bundle-loader?lazy!./Home';
-import loadAbout from 'bundle-loader?lazy!./About';
-import loadTopics from 'bundle-loader?lazy!./Topics';
+import loadHome from 'bundle-loader?lazy&name=[name]!./Home';
+import loadAbout from 'bundle-loader?lazy&name=[name]!./About';
+import loadTopics from 'bundle-loader?lazy&name=[name]!./Topics';
 
 import Bundle from './Bundle';
 
