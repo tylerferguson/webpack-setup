@@ -1,40 +1,40 @@
-const webpack = require("webpack");
-const path = require("path");
-const ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
-const WebpackChunkHash = require("webpack-chunk-hash");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const webpack = require('webpack');
+const path = require('path');
+const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin');
+const WebpackChunkHash = require('webpack-chunk-hash');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: "./app/index.js",
+  entry: './app/index.js',
   output: {
-    filename: "[name].[chunkhash].js",
-    chunkFilename: "[name].[chunkhash].js",
-    path: path.resolve(__dirname, "dist"),
-    publicPath: "/"
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
+    path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
-  devtool: "cheap-source-map",
+  devtool: 'cheap-source-map',
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./app/index.ejs"
+      template: './app/index.ejs',
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",
-      minChunks: function(module) {
+      name: 'vendor',
+      minChunks(module) {
         // this assumes your vendor imports exist in the node_modules directory
-        return module.context && module.context.indexOf("node_modules") !== -1;
-      }
+        return module.context && module.context.indexOf('node_modules') !== -1;
+      },
     }),
-    //CommonChunksPlugin will now extract all the common modules from vendor and main bundles
+    // CommonChunksPlugin will now extract all the common modules from vendor and main bundles
     new webpack.optimize.CommonsChunkPlugin({
-      name: "manifest" //But since there are no more common modules between them we end up with just the runtime code included in the manifest file
+      name: 'manifest', // But since there are no more common modules between them we end up with just the runtime code included in the manifest file
     }),
     new webpack.HashedModuleIdsPlugin(),
     new WebpackChunkHash(),
     new ChunkManifestPlugin({
-      filename: "chunk-manifest.json",
-      manifestVariable: "webpackManifest",
-      inlineManifest: true
-    })
+      filename: 'chunk-manifest.json',
+      manifestVariable: 'webpackManifest',
+      inlineManifest: true,
+    }),
   ],
   module: {
     rules: [
@@ -42,12 +42,13 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
-            presets: ["env", "react", "es2015"]
-          }
-        }
-      }
-    ]
-  }
+            presets: ['env', 'react', 'es2015'],
+            plugins: ['transform-class-properties'],
+          },
+        },
+      },
+    ],
+  },
 };

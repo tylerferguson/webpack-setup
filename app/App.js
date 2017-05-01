@@ -1,9 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import Bundle from './Bundle';
 
+import loadAbout from 'bundle-loader?lazy!./About.js';
 import Home from './Home';
-import About from './About';
 import Topics from './Topics';
+
+const About = () => (
+  <Bundle load={loadAbout}>
+    {(C) => <C />}
+  </Bundle>
+);
 
 const BasicExample = () => (
   <Router>
