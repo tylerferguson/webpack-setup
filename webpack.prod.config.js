@@ -45,12 +45,22 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['env', 'react', 'es2015'],
-            plugins: ['transform-class-properties', 'react-css-modules'],
+            plugins: [
+              'transform-class-properties',
+              [
+                'react-css-modules',
+                {
+                  filetypes: {
+                    '.scss': 'postcss-scss',
+                  },
+                },
+              ],
+            ],
           },
         },
       },
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         exclude: /node_modules/,
         use: [
           { loader: 'style-loader' },
@@ -59,8 +69,10 @@ module.exports = {
             options: {
               modules: true,
               localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
+              importLoaders: 1,
             },
           },
+          { loader: 'sass-loader' },
         ],
       },
     ],
