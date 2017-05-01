@@ -1,14 +1,15 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
+import loadHome from 'bundle-loader?lazy!./Home';
+import loadAbout from 'bundle-loader?lazy!./About';
+import loadTopics from 'bundle-loader?lazy!./Topics';
+
 import Bundle from './Bundle';
 
-import loadAbout from 'bundle-loader?lazy!./About.js';
-import Home from './Home';
-import Topics from './Topics';
-
-const About = () => (
-  <Bundle load={loadAbout}>
-    {(C) => <C />}
+const createBundle = (load) => (props) => (
+  <Bundle load={load}>
+    {(Component) => <Component {...props} />}
   </Bundle>
 );
 
@@ -23,9 +24,9 @@ const BasicExample = () => (
 
       <hr />
 
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/topics" component={Topics} />
+      <Route exact path="/" component={createBundle(loadHome)} />
+      <Route path="/about" component={createBundle(loadAbout)} />
+      <Route path="/topics" component={createBundle(loadTopics)} />
     </div>
   </Router>
 );
