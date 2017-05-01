@@ -45,7 +45,7 @@ module.exports = {
           loader: 'babel-loader',
           options: {
             presets: ['env', 'react', 'es2015'],
-            plugins: ['transform-class-properties'],
+            plugins: ['transform-class-properties', 'react-css-modules'],
           },
         },
       },
@@ -58,6 +58,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               modules: true,
+              localIdentName: '[path]___[name]__[local]___[hash:base64:5]',
             },
           },
         ],
