@@ -5,6 +5,8 @@ const WebpackChunkHash = require('webpack-chunk-hash');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const MyPlugin = require('./my-plugin');
+
 module.exports = {
   entry: './app/index.js',
   output: {
@@ -42,6 +44,7 @@ module.exports = {
       // Follow issue #455: https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/455
       allChunks: true,
     }),
+    new MyPlugin(),
   ],
   module: {
     rules: [
